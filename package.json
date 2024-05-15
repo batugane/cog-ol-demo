@@ -10,6 +10,7 @@
     "vite": "^5.2.11"
   },
   "dependencies": {
+    "geotiff.js": "^1.0.1",
     "ol": "latest"
   }
 }
