@@ -4,7 +4,7 @@ import GeoTIFF from 'ol/source/GeoTIFF.js'
 
 // Initial map setup
 let source = new GeoTIFF({
-  sources: [{ url: 'https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/36/Q/WD/2020/7/S2A_36QWD_20200701_0_L2A/TCI.tif' }],
+  sources: [{ url: 'https://oin-hotosm.s3.amazonaws.com/56f9b5a963ebf4bc00074e70/0/56f9c2d42b67227a79b4faec.tif' }],
 })
 let map = new Map({
   target: 'map',
@@ -20,6 +20,7 @@ function updateMap() {
       sources: [{ url: url }],
     })
     map.setLayers([new TileLayer({ source: source })])
+    map.setView(source.getView())
     document.getElementById('displaying').innerText = `Displaying: ${url}`
   } else {
     document.getElementById('displaying').innerText = 'No URL entered.'
