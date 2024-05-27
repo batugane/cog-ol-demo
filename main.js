@@ -4,8 +4,15 @@ import GeoTIFF from 'ol/source/GeoTIFF.js'
 
 // Initial map setup
 let source = new GeoTIFF({
-  sources: [{ url: 'https://oin-hotosm.s3.amazonaws.com/56f9b5a963ebf4bc00074e70/0/56f9c2d42b67227a79b4faec.tif' }],
+  sources: [
+    {
+      url: 'https://oin-hotosm.s3.amazonaws.com/56f9b5a963ebf4bc00074e70/0/56f9c2d42b67227a79b4faec.tif',
+      bands: [1, 2, 3],
+    },
+  ],
+  convertToRGB: true,
 })
+
 let map = new Map({
   target: 'map',
   layers: [new TileLayer({ source: source })],
@@ -17,7 +24,13 @@ function updateMap() {
   const url = document.getElementById('urlInput').value
   if (url) {
     source = new GeoTIFF({
-      sources: [{ url: url }],
+      sources: [
+        {
+          url: url,
+          bands: [1, 2, 3],
+        },
+      ],
+      convertToRGB: true,
     })
     map.setLayers([new TileLayer({ source: source })])
     map.setView(source.getView())
